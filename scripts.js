@@ -22,6 +22,7 @@
  *    with the string you added to the array, but a broken image.
  */
 
+// when it comes to the timer, some chars are allowed ("e", "-", "+", ".")
 function calculateBPM() {
   const minTime = document.getElementById("pace-min");
   const secTime = document.getElementById("pace-sec");
