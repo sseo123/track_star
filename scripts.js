@@ -88,7 +88,6 @@ const musicDB = [
 
 let myPlaylist = [];
 let suggestionSongsArr = [];
-
 let setBPM;
 
 
@@ -102,6 +101,8 @@ function calculateBPM() {
   const minTime = document.getElementById("pace-min");
   const secTime = document.getElementById("pace-sec");
 
+  console.log(minTime.value);
+
   if (minTime.value.length > 2) {
     minTime.value = minTime.value.slice(0, 2);
   }
@@ -109,8 +110,13 @@ function calculateBPM() {
     secTime.value = secTime.value.slice(0, 2);
   }
 
-  let minutes = parseFloat(minTime.value) || 0;
-  let seconds = parseFloat(secTime.value) || 0;
+  console.log(Number(minTime.value));
+  if (!(Number(minTime.value))) {
+    return null;
+  }
+
+  let minutes = parseInt(minTime.value) || 0;
+  let seconds = parseInt(secTime.value) || 0;
 
   if (minutes > 12 || minutes < 6) {
     return null;
@@ -134,8 +140,8 @@ function updateBPM() {
   const errorBox = document.getElementById("bpm-negative-result-box");
   const bpmDisplay = document.getElementById("bpm-display");
 
-  const minTime = document.getElementById("pace-min").value;
-  const secTime = document.getElementById("pace-sec").value;
+  let minTime = document.getElementById("pace-min").value;
+  let secTime = document.getElementById("pace-sec").value;
 
   if (minTime === "" && secTime === "") {
     correctBox.style.display = "none";
@@ -159,8 +165,21 @@ function updateBPM() {
 
 
 
-
 //this will be all part of the creating the playlist, search, filter, add, and remove
+
+//filter function
+function handleFilter() {
+  // dropdown menu of options to filter out
+  // default selection is no filter for genre
+  // ex: you select pop, then you should search song.genre === "pop"
+
+
+  // how does this work?
+  // essentially, just modify handleSearch()
+}
+
+
+
 //search function
 // 1. make lowercase
 // 2. search for matches
@@ -173,9 +192,9 @@ function makeLowercase(text) {
 }
 
 function searchForMatch(songTitle, songAuthor, searchInput) {
-  let songTitleLower = makeLowercase(songTitle);
-  let songAuthorLower = makeLowercase(songAuthor);
-  let searchInputLower = makeLowercase(searchInput);
+  const songTitleLower = makeLowercase(songTitle);
+  const songAuthorLower = makeLowercase(songAuthor);
+  const searchInputLower = makeLowercase(searchInput);
 
   let isSongCorrect = false;
   if (songTitleLower.includes(searchInputLower)) {
@@ -257,8 +276,8 @@ function createCardsForValidSongs() {
             <p class="card-author">${song.author} • ${song.genre}</p>
           </div>
           <div class="card-stats">
-            <span class="card-bpm">${song.bpm} BPM</span>
-            <span class="card-time">length: ${songTime  || "3:15"}</span>
+            <span class="card-bpm">${song.bpm || "unassigned time"} BPM</span>
+            <span class="card-time">length: ${songTime  || "unassigned time"}</span>
           </div>
         </div>
         <button class="add-btn" onclick="addSong(${song.id})">+</button>

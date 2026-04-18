@@ -22,9 +22,11 @@
         <div class="input-unit">
           <span class="label-text">min</span>
           <input
-            type="number"
+            type="text"
             id="pace-min"
             placeholder="00"
+            inputmode="numeric"
+            pattern="[0-9]*"
             min="5"
             max="12"
           />
@@ -33,9 +35,11 @@
         <div class="input-unit">
           <span class="label-text">sec</span>
           <input
-            type="number"
+            type="text"
             id="pace-sec"
             placeholder="00"
+            inputmode="numeric"
+            pattern="[0-9]*"
             min="0"
             max="59"
           />
