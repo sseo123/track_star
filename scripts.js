@@ -24,24 +24,79 @@
 
 // when it comes to the timer, some chars are allowed ("e", "-", "+", ".")
 
+
+//using https://songbpm.com/ to find song BPM
+
 const musicDB = [
-  {
-    id: 1,
-    title: "test0",
-    author: "test00",
-    bpm: 150,
-    genre: "pop",
-    time: 200,
-  },
-  { id: 2, title: "test1", author: "test11", bpm: 154, genre: "christian" },
-  { id: 3, title: "test2", author: "test22", bpm: 150, genre: "jazz" },
-  { id: 4, title: "test3", author: "test33", bpm: 152, genre: "pop" },
-  { id: 5, title: "test4", author: "test44", bpm: 155, genre: "pop" },
+  // bpm 130 - 135 (6/5)
+  { id: 1, title: "Crazy", author: "LE SSERAFIM", bpm: 130, genre: ["pop"], time: 165 },
+  { id: 2, title: "En arvil a Paris", author: "Artun Miskciyan", bpm: 132, genre: ["no lyrics"], time: 236 },
+  { id: 3, title: "Somewhere in Brooklyn", author: "Bruno Mars", bpm: 130, genre: ["pop"], time: 182 },
+  { id: 4, title: "Die For You", author: "The Weeknd", bpm: 134, genre: ["pop"], time: 260 },
+  { id: 5, title: "That's What I Like", author: "Bruno Mars", bpm: 134, genre: ["pop"], time: 207 },
+  { id: 6, title: "I Thank God", author: "Maverick City Music", bpm: 130, genre: ["christian"], time: 466 },
+
+  // bpm 135 - 140 (3/5)
+  { id: 7, title: "Beat It", author: "Michael Jackson", bpm: 139, genre: ["pop"], time: 258 },
+  { id: 8, title: "Off The Grid", author: "Kanye West", bpm: 138, genre:["pop"], time: 339 },
+  { id: 9, title: "Nonsense", author: "Sabrina Carpenter", bpm: 139, genre: ["pop"], time: 174 },
+
+  // bpm 140 - 145 (3/5)
+  { id: 10, title: "Samba de Verao", author: "Lisa Ono", bpm: 141, genre: ["jazz", "no lyrics"], time: 315 },
+  { id: 11, title: "Annie (clean)", author: "Wave To Earth", bpm: 148, genre: ["pop"], time: 315 },
+  { id: 12, title: "drivers license", author: "Olivia Rodgrigo", bpm: 144, genre: ["pop"], time: 242 },
+
+  // bpm 145 - 150 (1/5)
+  { id: 13, title: "Bound 2", author: "Kanye West", bpm: 149, genre: ["pop"], time: 229 },
+
+  // bpm 150 - 155 (1/5)
+  { id: 14, title: "No Longer Bound", author: "Forrest Frank", bpm: 154, genre: ["christian", "pop"], time: 180 },
+
+  // bpm 155 - 160 (2/5)
+  { id: 15, title: "Shake It Off", author: "Taylor Swift", bpm: 160, genre: ["pop"], time: 219 },
+  { id: 16, title: "Happy", author: "Day6", bpm: 160, genre: ["pop"], time: 190 },
+
+  // bpm 160 - 165 (1/5)
+  { id: 17, title: "Happy", author: "Pharrell Williams", bpm: 160, genre: ["pop"], time: 233 },
+
+  // bpm 165 - 170 (3/5)
+  { id: 18, title: "Good 4 You ", author: "Olivia Rodgigo", bpm: 167, genre: ["pop"], time: 178 },
+  { id: 19, title: "Good Life", author: "Kanye West", bpm: 166, genre: ["pop"], time: 207 },
+  { id: 20, title: "God is Good", author: "Forrest Frank", bpm: 170, genre: ["pop", "christian"], time: 208 },
+
+  // bpm 170 - 175 (1/5)
+  { id: 21, title: "Bliding Lights", author: "The Weeknd", bpm: 171, genre: ["pop"], time: 200},
+
+  // bpm 175 - 180 (3/5)
+  { id: 22, title: "Sunday Morning", author: "Maroon 5", bpm: 176, genre: ["pop"], time: 245},
+  { id: 23, title: "Follow God", author: "Kanye West", bpm: 180, genre: ["pop"], time: 105 },
+  { id: 24, title: "Dive", author: "Olivia Dean", bpm: 180, genre: ["pop"], time: 201 },
+
+  // bpm 180 - 185 (3/5)
+  { id: 25, title: "Gran Vals", author: "Francisco Tarrega", bpm: 185, genre: ["no lyrics"], time: 210 },
+  { id: 26, title: "Sunflower", author: "Post Malone", bpm: 180, genre: ["pop"], time: 158 },
+  { id: 27, title: "Stayed On Him", author: "Terrian", bpm: 180, genre: ["christian"], time: 239 },
+
+  // bpm 185 - 190 (0/5)
+
+  // bpm 190 - 195 (2/5)
+  { id: 28, title: "Animals", author: "Maroon 5", bpm: 190, genre: ["pop"], time: 231 },
+  { id: 29, title: "This Love", author: "Maroon 5", bpm: 190, genre: ["pop"], time: 206 },
+
 ];
 
+
 let myPlaylist = [];
+let suggestionSongsArr = [];
 
 let setBPM;
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("pace-min").addEventListener("input", updateBPM);
+  document.getElementById("pace-sec").addEventListener("input", updateBPM);
+  document .getElementById("search-input").addEventListener("input", handleSearch); 
+});
 
 function calculateBPM() {
   const minTime = document.getElementById("pace-min");
@@ -57,7 +112,7 @@ function calculateBPM() {
   let minutes = parseFloat(minTime.value) || 0;
   let seconds = parseFloat(secTime.value) || 0;
 
-  if (minutes > 12 || minutes < 5) {
+  if (minutes > 12 || minutes < 6) {
     return null;
   }
   if (seconds > 59 || seconds < 0) {
@@ -66,7 +121,7 @@ function calculateBPM() {
 
   let decimalPace = minutes + seconds / 60;
 
-  if (decimalPace >= 5 && decimalPace <= 12) {
+  if (decimalPace >= 6 && decimalPace <= 12) {
     let targetBPM = 250 - 10 * decimalPace;
     return targetBPM;
   } else {
@@ -92,22 +147,72 @@ function updateBPM() {
 
   if (!(bpmResult === null)) {
     bpmDisplay.innerText = Math.round(bpmResult);
-    correctBox.style.display = "block";
+    correctBox.style.display = "";
     errorBox.style.display = "none";
   } else {
     correctBox.style.display = "none";
-    errorBox.style.display = "block";
+    errorBox.style.display = "";
   }
 
   setBPM = bpmResult;
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("pace-min").addEventListener("input", updateBPM);
-  document.getElementById("pace-sec").addEventListener("input", updateBPM);
-});
+
+
 
 //this will be all part of the creating the playlist, search, filter, add, and remove
+//search function
+// 1. make lowercase
+// 2. search for matches
+// 3. display the ones that match and hide the ones that don't match
+
+function makeLowercase(text) {
+  let res;
+  res = text.toLowerCase();
+  return res;
+}
+
+function searchForMatch(songTitle, songAuthor, searchInput) {
+  let songTitleLower = makeLowercase(songTitle);
+  let songAuthorLower = makeLowercase(songAuthor);
+  let searchInputLower = makeLowercase(searchInput);
+
+  let isSongCorrect = false;
+  if (songTitleLower.includes(searchInputLower)) {
+    isSongCorrect = true;
+  }
+
+  let isAuthorCorrect = false;
+  if (songAuthorLower.includes(searchInputLower)) {
+    isAuthorCorrect = true;
+  }
+
+  return isSongCorrect || isAuthorCorrect;
+}
+
+function handleSearch() {
+  let searchInput = document.getElementById("search-input");
+  let userSearch = searchInput.value;
+
+  let container = document.getElementById("valid-card-container");
+  let cards = container.getElementsByClassName("suggestion-card");
+
+  for (let i = 0; i < suggestionSongsArr.length; i++) {
+    let song = suggestionSongsArr[i];
+    let card = cards[i];
+
+    if (searchForMatch(song.title, song.author, userSearch)) {
+      card.style.display = "";
+    } else {
+      card.style.display = "none";
+    }
+  }
+}
+
+function showSearchBar() {
+  let searchBar = document.getElementById("search-bar");
+  searchBar.style.display = "flex";
+}
 
 // this function takes all of the valid songs that match the BPM and append it to an array
 function findValidSongs() {
@@ -123,7 +228,13 @@ function findValidSongs() {
 
 // we need a function to create and display all of the cards that are valid
 function createCardsForValidSongs() {
+  if (!setBPM) {
+    alert("There is currently no valid BPM. Please set one");
+    return;
+  }
+
   let validSongs = findValidSongs();
+  suggestionSongsArr = [];
 
   console.log(validSongs);
   let container = document.getElementById("valid-card-container");
@@ -134,6 +245,10 @@ function createCardsForValidSongs() {
       continue;
     }
 
+    suggestionSongsArr.push(song);
+
+    songTime = (song.time / 60).toFixed(2);
+
     container.innerHTML += `
       <div class="suggestion-card">
         <div class="card-top">
@@ -143,12 +258,14 @@ function createCardsForValidSongs() {
           </div>
           <div class="card-stats">
             <span class="card-bpm">${song.bpm} BPM</span>
-            <span class="card-time">${song.time || "3:15"}</span>
+            <span class="card-time">length: ${songTime  || "3:15"}</span>
           </div>
         </div>
         <button class="add-btn" onclick="addSong(${song.id})">+</button>
       </div> `;
   }
+
+  showSearchBar();
 }
 
 //we need a function to find the id of the card that was just added to the playlist
@@ -213,16 +330,4 @@ function updateViewablePlaylist() {
   }
 }
 
-// we need a function to handle the searching for each song after validSongs() is called
 // we need a function to handle the filtering for each song after validSongs() is called
-
-// this can be where we call everything to be displayed
-// in here we can add and delete
-function createPlaylist() {}
-
-// function generatePlaylist(){
-//   if (!setBPM) {
-//     alert("There is currently no valid BPM. Please set one")
-//     return;
-//   }
-// }

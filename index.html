@@ -17,7 +17,7 @@
 
     <div class="pace-selector">
       <label>What is your target pace per mile?</label>
-      <h3>Input your desired pace (between 5 mins and 12 mins)</h3>
+      <h3>Input your desired pace (between 6 mins and 12 mins)</h3>
       <div class="timer-input-container">
         <div class="input-unit">
           <span class="label-text">min</span>
@@ -68,11 +68,15 @@
 
     <div id="playlist-container"></div>
 
-    <div id="valid-card-container"></div>
+    <div id="search-bar" class="search-bar" style="display: none">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="search song by title or artist"
+        class="search-input"
+      />
+    </div>
 
-    <!-- <div class="search-wrapper">
-      <label for="search">Search Song</label>
-      <input type="search" id="search">
-    </div> -->
+    <div id="valid-card-container"></div>
   </body>
 </html>
