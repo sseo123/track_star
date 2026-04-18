@@ -23,6 +23,26 @@
  */
 
 // when it comes to the timer, some chars are allowed ("e", "-", "+", ".")
+
+const musicDB = [
+  {
+    id: 1,
+    title: "test0",
+    author: "test00",
+    bpm: 150,
+    genre: "pop",
+    time: 200,
+  },
+  { id: 2, title: "test1", author: "test11", bpm: 154, genre: "christian" },
+  { id: 3, title: "test2", author: "test22", bpm: 150, genre: "jazz" },
+  { id: 4, title: "test3", author: "test33", bpm: 152, genre: "pop" },
+  { id: 5, title: "test4", author: "test44", bpm: 155, genre: "pop" },
+];
+
+let myPlaylist = [];
+
+let setBPM;
+
 function calculateBPM() {
   const minTime = document.getElementById("pace-min");
   const secTime = document.getElementById("pace-sec");
@@ -78,9 +98,125 @@ function updateBPM() {
     correctBox.style.display = "none";
     errorBox.style.display = "block";
   }
+
+  setBPM = bpmResult;
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("pace-min").addEventListener("input", updateBPM);
   document.getElementById("pace-sec").addEventListener("input", updateBPM);
 });
+
+//this will be all part of the creating the playlist, search, filter, add, and remove
+
+// this function takes all of the valid songs that match the BPM and append it to an array
+function findValidSongs() {
+  let validSongArr = [];
+
+  for (let song of musicDB) {
+    if (song.bpm >= setBPM - 5 && song.bpm <= setBPM + 5) {
+      validSongArr.push(song);
+    }
+  }
+  return validSongArr;
+}
+
+// we need a function to create and display all of the cards that are valid
+function createCardsForValidSongs() {
+  let validSongs = findValidSongs();
+
+  console.log(validSongs);
+  let container = document.getElementById("valid-card-container");
+  container.innerHTML = "";
+
+  for (let song of validSongs) {
+    container.innerHTML += `
+      <div class="suggestion-card">
+        <div class="card-top">
+          <div class="card-info">
+            <h4 class="card-title">${song.title}</h4>
+            <p class="card-author">${song.author} • ${song.genre}</p>
+          </div>
+          <div class="card-stats">
+            <span class="card-bpm">${song.bpm} BPM</span>
+            <span class="card-time">${song.time || "3:15"}</span>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addSong(${song.id})">+</button>
+      </div> `;
+  }
+}
+
+//we need a function to find the id of the card that was just added to the playlist
+function addSong(songID) {
+  for (let song of musicDB) {
+    if (songID === song.id) {
+      if (myPlaylist.includes(song)) {
+        alert("This song already exists!");
+        return;
+      }
+      myPlaylist.push(song);
+    }
+  }
+
+  updateViewablePlaylist();
+}
+
+function deleteSong(id) {
+  let updatedPlaylist = [];
+
+  for (let song of myPlaylist) {
+    if (song.id !== id) {
+      updatedPlaylist.push(song);
+    }
+  }
+  myPlaylist = updatedPlaylist;
+  updateViewablePlaylist();
+}
+
+function updateViewablePlaylist() {
+  let container = document.getElementById("playlist-container");
+  container.innerHTML = "";
+
+  if (myPlaylist.length > 0) {
+    container.innerHTML = `
+      <div class="playlist-header">
+        <span class="index-col">#</span>
+        <span class="title-col">Title</span>
+        <span class="bpm-col">BPM</span>
+      </div>
+    `;
+  }
+
+  count = 1;
+  for (let song of myPlaylist) {
+    container.innerHTML += `
+      <div class="song-row">
+        <div class="song-index">${count}</div>
+        <div class="song-info">
+          <h3 class="song-title">${song.title}</h3>
+          <p class="song-author">Artist: ${song.author} - ${song.genre}</p>
+        </div>
+          <div class="song-duration">${song.bpm}</div>
+          <div class="song-duration">${song.time}</div>
+        <button class="delete-btn" onclick="deleteSong(${song.id})">-</button>
+      </div>
+    `;
+    console.log(song);
+    count++;
+  }
+}
+
+// we need a function to handle the searching for each song after validSongs() is called
+// we need a function to handle the filtering for each song after validSongs() is called
+
+// this can be where we call everything to be displayed
+// in here we can add and delete
+function createPlaylist() {}
+
+// function generatePlaylist(){
+//   if (!setBPM) {
+//     alert("There is currently no valid BPM. Please set one")
+//     return;
+//   }
+// }
