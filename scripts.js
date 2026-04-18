@@ -130,6 +130,10 @@ function createCardsForValidSongs() {
   container.innerHTML = "";
 
   for (let song of validSongs) {
+    if (myPlaylist.includes(song)) {
+      continue;
+    }
+
     container.innerHTML += `
       <div class="suggestion-card">
         <div class="card-top">
@@ -160,6 +164,7 @@ function addSong(songID) {
   }
 
   updateViewablePlaylist();
+  createCardsForValidSongs();
 }
 
 function deleteSong(id) {
@@ -172,6 +177,7 @@ function deleteSong(id) {
   }
   myPlaylist = updatedPlaylist;
   updateViewablePlaylist();
+  createCardsForValidSongs();
 }
 
 function updateViewablePlaylist() {
