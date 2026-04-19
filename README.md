@@ -1,3 +1,9 @@
+Shawn Seo's Project Link:
+https://sseo123.github.io/track_star/
+
+
+
+
 # SEA Stage 2 - Data Catalog Project
 
 This repository contains the instructions, requirements, and starter code for Stage Two of the Snap Engineering Academy application process.
