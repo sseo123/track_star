@@ -330,6 +330,26 @@ function clearBPMFilter() {
 //-------------------------------
 //-------------------------------
 
+
+function playlistEmptyState() {
+  let container = document.getElementById("playlist-container");
+  container.innerHTML = "";
+
+  container.innerHTML = `
+    <div class="playlist-grid-header">
+      <span class="col-num">#</span>
+      <span class="col-title">Title</span>
+      <span class="col-time">🕒</span>
+    </div>
+    <hr class="playlist-divider" />
+
+    <div>
+      currently no songs are selected
+    </div>
+  `;
+  
+}
+
 function rerenderSongCards() {
   let container = document.getElementById("valid-card-container");
   container.innerHTML = "";
@@ -393,8 +413,18 @@ function updateViewablePlaylist() {
   let container = document.getElementById("playlist-container");
   container.innerHTML = "";
 
+  container.innerHTML = `
+    <div class="playlist-grid-header">
+      <span class="col-num">#</span>
+      <span class="col-title">Title</span>
+      <span class="col-time">🕒</span>
+    </div>
+    <hr class="playlist-divider" />
+  `;
+
   if (myPlaylist.length < 1) {
-    return "empty";
+    playlistEmptyState();
+    return;
   }
 
   count = 1;
