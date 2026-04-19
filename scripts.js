@@ -110,6 +110,14 @@ function initalDisplayOfSongs() {
 function displaySongs(song, container) {
     let songSec = song.time % 60;
     let songMin = Math.floor(song.time / 60)
+    
+    let songSecString = songSec.toString();
+  
+    if (songSecString.length < 2) {
+      songSecString = "0" + songSecString;
+    } 
+
+    let songGenreConcant = song.genre.join(" • ");
 
     container.innerHTML += `
       <div class="suggestion-card">
@@ -117,11 +125,11 @@ function displaySongs(song, container) {
         <div class="card-top">
           <div class="card-info">
             <h4 class="card-title">${song.title}</h4>
-            <p class="card-author">${song.author} • ${song.genre}</p>
+            <p class="card-author">${song.author} • ${songGenreConcant}</p>
           </div>
           <div class="card-stats">
             <span class="card-bpm">${song.bpm || "unassigned"} BPM</span>
-            <span class="card-time">Song Duration: ${songMin}:${songSec}</span>
+            <span class="card-time">Song Duration: ${songMin}:${songSecString}</span>
           </div>
         </div>
         <button class="add-btn" onclick="addSong(${song.id})">+</button>
@@ -402,18 +410,27 @@ function updateViewablePlaylist() {
 
   count = 1;
   for (let song of myPlaylist) {
-    let songSec = song.time % 60;
     let songMin = Math.floor(song.time / 60)
+    let songSec = song.time % 60;
+
+    let songSecString = songSec.toString();
   
+    if (songSecString.length < 2) {
+      songSecString = "0" + songSecString;
+    } 
+
+
+    let songGenreConcant = song.genre.join(" • ");
+
     container.innerHTML += `
       <div class="song-row">
         <div class="song-index">${count}</div>
         <div class="song-info">
           <h3 class="song-title">${song.title}</h3>
-          <p class="song-author">Artist: ${song.author} • ${song.genre}</p>
+          <p class="song-author">Artist: ${song.author} • ${songGenreConcant}</p>
         </div>
-          <div class="song-duration">${song.bpm} BPM </div>
-          <span class="song-duration">${songMin}:${songSec}</span>
+          <div class="song-duration">${song.bpm} BPM</div>
+          <span class="song-duration">${songMin}:${songSecString}</span>
         <button class="delete-btn" onclick="deleteSong(${song.id})">-</button>
       </div>
     `;
@@ -421,5 +438,3 @@ function updateViewablePlaylist() {
     count++;
   }
 }
-
-        // <div class="card-album-art">♪</div>
