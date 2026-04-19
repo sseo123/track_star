@@ -90,9 +90,7 @@ let myPlaylist = [];
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("pace-min").addEventListener("input", updateBPM);
   document.getElementById("pace-sec").addEventListener("input", updateBPM);
-  document
-    .getElementById("search-input")
-    .addEventListener("input", handleSearch);
+  document.getElementById("search-input").addEventListener("input", handleSearch); 
   initalDisplayOfSongs();
 });
 
@@ -104,7 +102,13 @@ function initalDisplayOfSongs() {
 
   for (let song of musicDB) {
     suggestionSongsArr.push(song);
-    songTime = (song.time / 60).toFixed(2);
+    displaySongs(song, container);
+  }
+}
+
+
+function displaySongs(song, container) {
+    let songTime = (song.time / 60).toFixed(2);
 
     container.innerHTML += `
       <div class="suggestion-card">
@@ -115,13 +119,12 @@ function initalDisplayOfSongs() {
             <p class="card-author">${song.author} • ${song.genre}</p>
           </div>
           <div class="card-stats">
-            <span class="card-bpm">${song.bpm || "unassigned time"} BPM</span>
+            <span class="card-bpm">${song.bpm || "unassigned"} BPM</span>
             <span class="card-time">length: ${songTime || "unassigned time"}</span>
           </div>
         </div>
         <button class="add-btn" onclick="addSong(${song.id})">+</button>
       </div> `;
-  }
 }
 
 
@@ -251,7 +254,8 @@ function handleSearch() {
 //-------------------------------
 //-------------------------------
 //if user decided to use filter
-//1. set the BPM
+//1. BPM Filter
+//2. Genre Filter
 //-------------------------------
 //-------------------------------
 
@@ -284,23 +288,7 @@ function displayBPMFilteredSongs() {
       continue;
     }
 
-    songTime = (song.time / 60).toFixed(2);
-
-    container.innerHTML += `
-      <div class="suggestion-card">
-      <div class="card-album-art">♪</div>
-        <div class="card-top">
-          <div class="card-info">
-            <h4 class="card-title">${song.title}</h4>
-            <p class="card-author">${song.author} • ${song.genre}</p>
-          </div>
-          <div class="card-stats">
-            <span class="card-bpm">${song.bpm || "unassigned time"} BPM</span>
-            <span class="card-time">length: ${songTime || "unassigned time"}</span>
-          </div>
-        </div>
-        <button class="add-btn" onclick="addSong(${song.id})">+</button>
-      </div> `;
+    displaySongs(song, container);
 
     suggestionSongsArr.push(song);
   }
@@ -322,7 +310,6 @@ function clearBPMFilter() {
 
   initalDisplayOfSongs();
 }
-
 
 //-------------------------------
 //-------------------------------
@@ -355,22 +342,7 @@ function rerenderSongCards() {
   container.innerHTML = "";
 
   for (let song of suggestionSongsArr) {
-    songTime = (song.time / 60).toFixed(2);
-    container.innerHTML += `
-      <div class="suggestion-card">
-      <div class="card-album-art">♪</div>
-        <div class="card-top">
-          <div class="card-info">
-            <h4 class="card-title">${song.title}</h4>
-            <p class="card-author">${song.author} • ${song.genre}</p>
-          </div>
-          <div class="card-stats">
-            <span class="card-bpm">${song.bpm || "unassigned time"} BPM</span>
-            <span class="card-time">length: ${songTime || "unassigned time"}</span>
-          </div>
-        </div>
-        <button class="add-btn" onclick="addSong(${song.id})">+</button>
-      </div> `;
+    displaySongs(song, container);
   }
 }
 
@@ -429,6 +401,8 @@ function updateViewablePlaylist() {
 
   count = 1;
   for (let song of myPlaylist) {
+    let songTime = (song.time / 60).toFixed(2);
+  
     container.innerHTML += `
       <div class="song-row">
       <div class="card-album-art">♪</div>
@@ -438,7 +412,7 @@ function updateViewablePlaylist() {
           <p class="song-author">Artist: ${song.author} - ${song.genre}</p>
         </div>
           <div class="song-duration">${song.bpm}</div>
-          <div class="song-duration">${song.time}</div>
+          <div class="song-duration">${songTime}</div>
         <button class="delete-btn" onclick="deleteSong(${song.id})">-</button>
       </div>
     `;
