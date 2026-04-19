@@ -16,41 +16,68 @@
     </header>
 
     <div class="pace-selector">
-      <label>What is your target pace per mile?</label>
-      <h3>Input your desired pace (between 6 mins and 12 mins)</h3>
-      <div class="timer-input-container">
-        <div class="input-unit">
-          <span class="label-text">min</span>
-          <input
-            type="text"
-            id="pace-min"
-            placeholder="00"
-            inputmode="numeric"
-            pattern="[0-9]*"
-            min="5"
-            max="12"
-          />
+      <div class="pace-converter-card">
+        <div class="converter-header">
+          <span class="converter-icon">🏃‍♀️♪🏃</span>
+          <h2 class="converter-title">Pace to BPM Converter</h2>
         </div>
-        <span class="separator">:</span>
-        <div class="input-unit">
-          <span class="label-text">sec</span>
-          <input
-            type="text"
-            id="pace-sec"
-            placeholder="00"
-            inputmode="numeric"
-            pattern="[0-9]*"
-            min="0"
-            max="59"
-          />
+
+        <p class="converter-subtitle">
+          Enter your target running pace to find songs that match your cadence (between 6 and 12 minutes)
+        </p>
+
+        <div class="converter-content">
+          <div class="pace-input-group">
+            <label class="pace-label">Minutes</label>
+            <input
+              type="text"
+              id="pace-min"
+              placeholder="00"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              min="5"
+              max="12"
+            />
+          </div>
+
+          <span class="pace-separator">:</span>
+
+          <div class="pace-input-group">
+            <label class="pace-label">Seconds</label>
+            <input
+              type="text"
+              id="pace-sec"
+              placeholder="00"
+              inputmode="numeric"
+              pattern="[0-9]*"
+              min="0"
+              max="59"
+            />
+          </div>
+
+          <span class="pace-unit">/ mile</span>
+
+          <button class="btn btn-primary" onclick="displayBPMFilteredSongs()">
+            Calculate
+          </button>
+          <button class="btn btn-secondary" onclick="clearBPMFilter()">
+            Clear
+          </button>
+        </div>
+
+        <div id="bpm-result-box" class="bpm-result-box" style="display: none">
+          Your target is <span id="bpm-display"></span> BPM
+        </div>
+        <div
+          id="bpm-negative-result-box"
+          class="bpm-result-box bpm-error"
+          style="display: none"
+        >
+          Invalid time
         </div>
       </div>
 
-      <div id="bpm-result-box" style="display: none">
-        Your target is <span id="bpm-display"></span> BPM
-      </div>
-      <div id="bpm-negative-result-box" style="display: none">Invalid time</div>
-      <div id="info-card" class="info-card">
+      <div class="info-card">
         <h3>Why Run to a Beat?</h3>
         <p>
           Running with music at a specific BPM helps your body naturally sync
@@ -66,21 +93,52 @@
       </div>
     </div>
 
-    <div class="footer">
-      <button onclick="createCardsForValidSongs()">Create Playlist</button>
+    <div class="main-content">
+      <div class="songs-section">
+        <div class="search-filter-container">
+          <div class="search-bar">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              id="search-input"
+              placeholder="Search by song or artist name"
+              class="search-input"
+            />
+          </div>
+
+          <!-- <div class="filter-section">
+            <span class="filter-label">Filter by Genre</span>
+            <div class="genre-buttons">
+              <button class="genre-btn active" onclick="filterByGenre('all')">All</button>
+              <button class="genre-btn" onclick="filterByGenre('pop')">Pop</button>
+              <button class="genre-btn" onclick="filterByGenre('christian')">Christian</button>
+              <button class="genre-btn" onclick="filterByGenre('jazz')">Jazz</button>
+              <button class="genre-btn" onclick="filterByGenre('no lyrics')">No Lyrics</button>
+            </div>
+          </div> -->
+        </div>
+
+        <div id="valid-card-container" class="song-cards-container"></div>
+      </div>
+
+      <div class="playlist-section">
+        <div class="playlist-header-box">
+          <span class="playlist-icon">♫</span>
+          <h2 class="playlist-title">My Playlist</h2>
+        </div>
+
+        <div id="playlist-container" class="playlist-container">
+          <div class="playlist-grid-header">
+            <span class="col-num">#</span>
+            <span class="col-title">Title</span>
+            <span class="col-time">🕒</span>
+          </div>
+          <hr class="playlist-divider" />
+
+          <div id="playlist-items-list" style="width: 100%"></div>
+          <h2>playlist is empty</h2>
+        </div>
+      </div>
     </div>
-
-    <div id="playlist-container"></div>
-
-    <div id="search-bar" class="search-bar" style="display: none">
-      <input
-        type="text"
-        id="search-input"
-        placeholder="search song by title or artist"
-        class="search-input"
-      />
-    </div>
-
-    <div id="valid-card-container"></div>
   </body>
 </html>

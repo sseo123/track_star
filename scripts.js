@@ -22,9 +22,6 @@
  *    with the string you added to the array, but a broken image.
  */
 
-// when it comes to the timer, some chars are allowed ("e", "-", "+", ".")
-
-
 //using https://songbpm.com/ to find song BPM
 
 const musicDB = [
@@ -86,22 +83,57 @@ const musicDB = [
 ];
 
 
-let myPlaylist = [];
 let suggestionSongsArr = [];
 let setBPM;
-
+let myPlaylist = [];
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("pace-min").addEventListener("input", updateBPM);
   document.getElementById("pace-sec").addEventListener("input", updateBPM);
-  document .getElementById("search-input").addEventListener("input", handleSearch); 
+  document
+    .getElementById("search-input")
+    .addEventListener("input", handleSearch);
+  initalDisplayOfSongs();
 });
+
+function initalDisplayOfSongs() {
+  suggestionSongsArr = [];
+
+  let container = document.getElementById("valid-card-container");
+  container.innerHTML = "";
+
+  for (let song of musicDB) {
+    suggestionSongsArr.push(song);
+    songTime = (song.time / 60).toFixed(2);
+
+    container.innerHTML += `
+      <div class="suggestion-card">
+      <div class="card-album-art">♪</div>
+        <div class="card-top">
+          <div class="card-info">
+            <h4 class="card-title">${song.title}</h4>
+            <p class="card-author">${song.author} • ${song.genre}</p>
+          </div>
+          <div class="card-stats">
+            <span class="card-bpm">${song.bpm || "unassigned time"} BPM</span>
+            <span class="card-time">length: ${songTime || "unassigned time"}</span>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addSong(${song.id})">+</button>
+      </div> `;
+  }
+}
+
+
+//-------------------------------
+//-------------------------------
+//everything to do with the bpm
+//-------------------------------
+//-------------------------------
 
 function calculateBPM() {
   const minTime = document.getElementById("pace-min");
   const secTime = document.getElementById("pace-sec");
-
-  console.log(minTime.value);
 
   if (minTime.value.length > 2) {
     minTime.value = minTime.value.slice(0, 2);
@@ -111,7 +143,8 @@ function calculateBPM() {
   }
 
   console.log(Number(minTime.value));
-  if (!(Number(minTime.value))) {
+
+  if (!Number(minTime.value)) {
     return null;
   }
 
@@ -125,14 +158,15 @@ function calculateBPM() {
     return null;
   }
 
+  //formula from https://katierunsthis.wordpress.com/2011/09/10/speed-training-by-bpm-beats-per-minute/
   let decimalPace = minutes + seconds / 60;
 
   if (decimalPace >= 6 && decimalPace <= 12) {
     let targetBPM = 250 - 10 * decimalPace;
     return targetBPM;
-  } else {
-    return null;
   }
+
+  return null;
 }
 
 function updateBPM() {
@@ -161,30 +195,15 @@ function updateBPM() {
   }
 
   setBPM = bpmResult;
+  console.log(setBPM);
 }
 
 
-
-//this will be all part of the creating the playlist, search, filter, add, and remove
-
-//filter function
-function handleFilter() {
-  // dropdown menu of options to filter out
-  // default selection is no filter for genre
-  // ex: you select pop, then you should search song.genre === "pop"
-
-
-  // how does this work?
-  // essentially, just modify handleSearch()
-}
-
-
-
-//search function
-// 1. make lowercase
-// 2. search for matches
-// 3. display the ones that match and hide the ones that don't match
-
+//-------------------------------
+//-------------------------------
+//everything to do with search
+//-------------------------------
+//-------------------------------
 function makeLowercase(text) {
   let res;
   res = text.toLowerCase();
@@ -228,48 +247,48 @@ function handleSearch() {
   }
 }
 
-function showSearchBar() {
-  let searchBar = document.getElementById("search-bar");
-  searchBar.style.display = "flex";
-}
 
-// this function takes all of the valid songs that match the BPM and append it to an array
-function findValidSongs() {
-  let validSongArr = [];
+//-------------------------------
+//-------------------------------
+//if user decided to use filter
+//1. set the BPM
+//-------------------------------
+//-------------------------------
+
+function findBPMMatchingSongs() {
+  let tempArr = [];
 
   for (let song of musicDB) {
     if (song.bpm >= setBPM - 5 && song.bpm <= setBPM + 5) {
-      validSongArr.push(song);
+      tempArr.push(song);
     }
   }
-  return validSongArr;
+  return tempArr;
 }
 
-// we need a function to create and display all of the cards that are valid
-function createCardsForValidSongs() {
+function displayBPMFilteredSongs() {
   if (!setBPM) {
     alert("There is currently no valid BPM. Please set one");
     return;
   }
 
-  let validSongs = findValidSongs();
-  suggestionSongsArr = [];
+  let validSongs = findBPMMatchingSongs();
 
-  console.log(validSongs);
   let container = document.getElementById("valid-card-container");
   container.innerHTML = "";
+
+  suggestionSongsArr = [];
 
   for (let song of validSongs) {
     if (myPlaylist.includes(song)) {
       continue;
     }
 
-    suggestionSongsArr.push(song);
-
     songTime = (song.time / 60).toFixed(2);
 
     container.innerHTML += `
       <div class="suggestion-card">
+      <div class="card-album-art">♪</div>
         <div class="card-top">
           <div class="card-info">
             <h4 class="card-title">${song.title}</h4>
@@ -277,19 +296,66 @@ function createCardsForValidSongs() {
           </div>
           <div class="card-stats">
             <span class="card-bpm">${song.bpm || "unassigned time"} BPM</span>
-            <span class="card-time">length: ${songTime  || "unassigned time"}</span>
+            <span class="card-time">length: ${songTime || "unassigned time"}</span>
+          </div>
+        </div>
+        <button class="add-btn" onclick="addSong(${song.id})">+</button>
+      </div> `;
+
+    suggestionSongsArr.push(song);
+  }
+}
+
+function clearBPMFilter() {
+  const minInput = document.getElementById("pace-min");
+  const secInput = document.getElementById("pace-sec");
+
+  minInput.value = "";
+  secInput.value = "";
+
+  setBPM = null;
+
+  const correctBox = document.getElementById("bpm-result-box");
+  const errorBox = document.getElementById("bpm-negative-result-box");
+  correctBox.style.display = "none";
+  errorBox.style.display = "none";
+
+  initalDisplayOfSongs();
+}
+
+
+//-------------------------------
+//-------------------------------
+//everything to do with the displaying the playlist
+//-------------------------------
+//-------------------------------
+
+function rerenderSongCards() {
+  let container = document.getElementById("valid-card-container");
+  container.innerHTML = "";
+
+  for (let song of suggestionSongsArr) {
+    songTime = (song.time / 60).toFixed(2);
+    container.innerHTML += `
+      <div class="suggestion-card">
+      <div class="card-album-art">♪</div>
+        <div class="card-top">
+          <div class="card-info">
+            <h4 class="card-title">${song.title}</h4>
+            <p class="card-author">${song.author} • ${song.genre}</p>
+          </div>
+          <div class="card-stats">
+            <span class="card-bpm">${song.bpm || "unassigned time"} BPM</span>
+            <span class="card-time">length: ${songTime || "unassigned time"}</span>
           </div>
         </div>
         <button class="add-btn" onclick="addSong(${song.id})">+</button>
       </div> `;
   }
-
-  showSearchBar();
 }
 
-//we need a function to find the id of the card that was just added to the playlist
 function addSong(songID) {
-  for (let song of musicDB) {
+  for (let song of suggestionSongsArr) {
     if (songID === song.id) {
       if (myPlaylist.includes(song)) {
         alert("This song already exists!");
@@ -299,41 +365,43 @@ function addSong(songID) {
     }
   }
 
+  suggestionSongsArr = suggestionSongsArr.filter((song) => song.id !== songID);
+
   updateViewablePlaylist();
-  createCardsForValidSongs();
+  rerenderSongCards();
 }
 
-function deleteSong(id) {
-  let updatedPlaylist = [];
+function deleteSong(songID) {
+  let tempArr = [];
 
   for (let song of myPlaylist) {
-    if (song.id !== id) {
-      updatedPlaylist.push(song);
+    if (song.id !== songID) {
+      tempArr.push(song);
+    } else if (song.id === songID) {
+      suggestionSongsArr.push(song);
     }
   }
-  myPlaylist = updatedPlaylist;
+  myPlaylist = tempArr;
+
+  suggestionSongsArr.sort((a, b) => a.id - b.id);
+
   updateViewablePlaylist();
-  createCardsForValidSongs();
+  rerenderSongCards();
 }
 
 function updateViewablePlaylist() {
   let container = document.getElementById("playlist-container");
   container.innerHTML = "";
 
-  if (myPlaylist.length > 0) {
-    container.innerHTML = `
-      <div class="playlist-header">
-        <span class="index-col">#</span>
-        <span class="title-col">Title</span>
-        <span class="bpm-col">BPM</span>
-      </div>
-    `;
+  if (myPlaylist.length < 1) {
+    return "empty";
   }
 
   count = 1;
   for (let song of myPlaylist) {
     container.innerHTML += `
       <div class="song-row">
+      <div class="card-album-art">♪</div>
         <div class="song-index">${count}</div>
         <div class="song-info">
           <h3 class="song-title">${song.title}</h3>
@@ -349,4 +417,4 @@ function updateViewablePlaylist() {
   }
 }
 
-// we need a function to handle the filtering for each song after validSongs() is called
+// we need a function to handle the filtering 
