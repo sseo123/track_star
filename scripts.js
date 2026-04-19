@@ -27,7 +27,7 @@
 const musicDB = [
   // bpm 130 - 135 (6/5)
   { id: 1, title: "Crazy", author: "LE SSERAFIM", bpm: 130, genre: ["pop"], time: 165 },
-  { id: 2, title: "En arvil a Paris", author: "Artun Miskciyan", bpm: 132, genre: ["no lyrics"], time: 236 },
+  { id: 2, title: "En arvil a Paris", author: "Artun Miskciyan", bpm: 132, genre: ["no lyrics"], time: 206 },
   { id: 3, title: "Somewhere in Brooklyn", author: "Bruno Mars", bpm: 130, genre: ["pop"], time: 182 },
   { id: 4, title: "Die For You", author: "The Weeknd", bpm: 134, genre: ["pop"], time: 260 },
   { id: 5, title: "That's What I Like", author: "Bruno Mars", bpm: 134, genre: ["pop"], time: 207 },
@@ -108,7 +108,8 @@ function initalDisplayOfSongs() {
 
 
 function displaySongs(song, container) {
-    let songTime = (song.time / 60).toFixed(2);
+    let songSec = song.time % 60;
+    let songMin = Math.floor(song.time / 60)
 
     container.innerHTML += `
       <div class="suggestion-card">
@@ -120,7 +121,7 @@ function displaySongs(song, container) {
           </div>
           <div class="card-stats">
             <span class="card-bpm">${song.bpm || "unassigned"} BPM</span>
-            <span class="card-time">length: ${songTime || "unassigned time"}</span>
+            <span class="card-time">Song Duration: ${songMin}:${songSec}</span>
           </div>
         </div>
         <button class="add-btn" onclick="addSong(${song.id})">+</button>
@@ -401,18 +402,18 @@ function updateViewablePlaylist() {
 
   count = 1;
   for (let song of myPlaylist) {
-    let songTime = (song.time / 60).toFixed(2);
+    let songSec = song.time % 60;
+    let songMin = Math.floor(song.time / 60)
   
     container.innerHTML += `
       <div class="song-row">
-      <div class="card-album-art">♪</div>
         <div class="song-index">${count}</div>
         <div class="song-info">
           <h3 class="song-title">${song.title}</h3>
-          <p class="song-author">Artist: ${song.author} - ${song.genre}</p>
+          <p class="song-author">Artist: ${song.author} • ${song.genre}</p>
         </div>
-          <div class="song-duration">${song.bpm}</div>
-          <div class="song-duration">${songTime}</div>
+          <div class="song-duration">${song.bpm} BPM </div>
+          <span class="song-duration">${songMin}:${songSec}</span>
         <button class="delete-btn" onclick="deleteSong(${song.id})">-</button>
       </div>
     `;
@@ -421,4 +422,4 @@ function updateViewablePlaylist() {
   }
 }
 
-// we need a function to handle the filtering 
+        // <div class="card-album-art">♪</div>
