@@ -100,16 +100,21 @@ function initalDisplayOfSongs() {
   let container = document.getElementById("valid-card-container");
   container.innerHTML = "";
 
-  if (myPlaylist.length > 0) {
-    // if there are songs in the playlist
-    // clear everything but don't show the songs that are in the playlist
-    // check if the playlist is empty -> if yes -> just display every song in musicDB
-    //if no -> find which songs are in myPlaylist -> add them to a tempArr -> 
-    // if musicDB's song === anySong in temp arr, don't add it, and remove that song from tempArr
-  }
   for (let song of musicDB) {
-    suggestionSongsArr.push(song);
-    displaySongs(song, container);
+    let isInPlaylist = false;
+
+    for (let i = 0; i < myPlaylist.length; i++) {
+      if (myPlaylist[i].id === song.id) {
+        isInPlaylist = true;
+        break;
+      }
+    }
+
+    if (!(isInPlaylist)) {
+      suggestionSongsArr.push(song);
+      displaySongs(song, container);
+    }
+    
   }
 }
 
