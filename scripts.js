@@ -23,7 +23,6 @@
  */
 
 //using https://songbpm.com/ to find song BPM
-
 const musicDB = [
 { id: 1, title: "Crazy", author: "LE SSERAFIM", bpm: 130, genre: ["pop"], time: 165, albumCover:"https://upload.wikimedia.org/wikipedia/en/3/35/Crazy_%28Le_Sserafim_album%29.png" },
 { id: 2, title: "En arvil a Paris", author: "Artun Miskciyan", bpm: 132, genre: ["no lyrics"], time: 206, albumCover:"https://is1-ssl.mzstatic.com/image/thumb/Music115/v4/94/8d/15/948d15c8-eeeb-e6d9-1a5f-4935f667721d/198001502545.png/600x600bf-60.jpg"},
@@ -75,11 +74,11 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("pace-min").addEventListener("input", updateBPM);
   document.getElementById("pace-sec").addEventListener("input", updateBPM);
   document.getElementById("search-input").addEventListener("input", handleSearch);
-  initalDisplayOfSongs();
+  initialDisplayOfSongs();
   updateViewablePlaylist();
 });
 
-function initalDisplayOfSongs() {
+function initialDisplayOfSongs() {
   suggestionSongsArr = [];
 
   let container = document.getElementById("valid-card-container");
@@ -282,7 +281,7 @@ function clearBPMFilter() {
   correctBox.style.display = "none";
   errorBox.style.display = "none";
 
-  initalDisplayOfSongs();
+  initialDisplayOfSongs();
 }
 
 //everything to do with the displaying the playlist
@@ -357,10 +356,12 @@ function updateViewablePlaylist() {
 
   let totalBPM = 0;
   let totalTime = 0;
+
   for (let song of myPlaylist) {
     totalBPM += song.bpm;
     totalTime += song.time;
   }
+
   let averageBPM = Math.floor(totalBPM / myPlaylist.length);
   let totalMin = Math.floor(totalTime / 60);
   let totalSec = totalTime % 60;
@@ -369,7 +370,6 @@ function updateViewablePlaylist() {
   if (totalSecString.length < 2) {
     totalSecString = "0" + totalSecString;
   }
-
 
   container.innerHTML = `
     <div class="playlist-summary-grid">

@@ -2,8 +2,6 @@
   --main-athletic-font: "Barlow Condensed", sans-serif;
   --accent-font: "Montserrat", sans-serif;
   --primary-green: #3e7a0c;
-  --text-primary: #ffffff;
-  --text-secondary: #b3b3b3;
   --error-red: #cd2714;
   --light-bg: #f4f4f4;
 }
@@ -50,6 +48,7 @@ body {
   background-position: 0 100%;
 }
 
+/* FAR TREE LAYER (background)   */
 .run-trees--far {
   bottom: 12%;
   height: clamp(72px, 14vh, 140px);
@@ -59,6 +58,7 @@ body {
   animation: run-drift-256 38s linear infinite;
 }
 
+/* NEAR TREE LAYER (foreground)  */
 .run-trees--near {
   bottom: 10%;
   height: clamp(96px, 18vh, 180px);
@@ -248,7 +248,6 @@ body {
 }
 
 .converter-subtitle {
-  color: var(--text-muted);
   font-size: 0.95rem;
   margin: 0 0 20px 0;
 }
@@ -269,7 +268,6 @@ body {
 
 .pace-label {
   font-size: 0.8rem;
-  color: var(--text-muted);
   text-transform: uppercase;
   font-weight: 600;
   letter-spacing: 0.5px;
@@ -299,7 +297,6 @@ body {
 }
 
 .pace-unit {
-  color: var(--text-muted);
   font-size: 0.9rem;
   margin-bottom: 8px;
 }
@@ -441,10 +438,6 @@ body {
   color: #333;
 }
 
-.search-input::placeholder {
-  color: var(--text-muted);
-}
-
 .song-cards-container {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -488,7 +481,6 @@ body {
 .card-author {
   margin: 4px 0 0 0;
   font-size: 0.85rem;
-  color: var(--text-muted);
 }
 
 .card-stats {
@@ -688,7 +680,7 @@ body {
 }
 
 .col-num {
-  padding-left: 17px
+  padding-left: 17px;
 }
 
 
@@ -739,7 +731,6 @@ body {
 .song-author {
   margin: 3px 0 0 0;
   font-size: 0.75rem;
-  color: var(--text-muted);
 }
 
 .song-duration {
@@ -867,7 +858,6 @@ body {
   }
 }
 
-
 .card-album-art {
   width: 80px;
   height: 80px;
@@ -885,5 +875,3 @@ body {
   height: 100%;
   object-fit: cover;
 }
-
-
