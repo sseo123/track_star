@@ -392,10 +392,11 @@ body {
   justify-content: flex-start;
   align-items: stretch;
 }
+ 
 
 .playlist-grid-header {
   display: grid;
-  grid-template-columns: 30px 1fr 60px;
+  grid-template-columns: 80px 1fr 45px 60px;
   align-items: center;
   width: 100%;
   color: #6a6a6a;
@@ -403,25 +404,36 @@ body {
   padding: 10px 0;
 }
 
+.col-num {
+  padding-left: 17px
+}
+
+
 .col-time {
   text-align: right;
-  padding-right: 5px;
+  padding-right: 21px;
 }
 
 .song-row {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 15px;
   display: flex;
   align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid #e0e0e0;
   gap: 10px;
+  transition: all 0.3s;
+  margin-bottom: 10px;
 }
 
-.song-row:last-child {
-  border-bottom: none;
+.song-row:hover {
+  border-color: var(--primary-green);
+  box-shadow: 0 4px 16px rgba(64, 183, 30, 0.15);
+  transform: translateY(-2px);
 }
 
 .song-index {
-  width: 30px;
+  width: 10px;
   font-weight: 600;
   color: var(--primary-green);
   font-family: var(--main-athletic-font);
@@ -464,6 +476,12 @@ body {
   justify-content: center;
   transition: all 0.3s;
   flex-shrink: 0;
+  opacity: 0; 
+  transition: opacity 0.2s ease;
+}
+
+.song-row:hover .delete-btn {
+  opacity: 1;
 }
 
 .delete-btn:hover {

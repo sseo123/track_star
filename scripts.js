@@ -100,6 +100,13 @@ function initalDisplayOfSongs() {
   let container = document.getElementById("valid-card-container");
   container.innerHTML = "";
 
+  if (myPlaylist.length > 0) {
+    // if there are songs in the playlist
+    // clear everything but don't show the songs that are in the playlist
+    // check if the playlist is empty -> if yes -> just display every song in musicDB
+    //if no -> find which songs are in myPlaylist -> add them to a tempArr -> 
+    // if musicDB's song === anySong in temp arr, don't add it, and remove that song from tempArr
+  }
   for (let song of musicDB) {
     suggestionSongsArr.push(song);
     displaySongs(song, container);
@@ -335,6 +342,7 @@ function playlistEmptyState() {
     <div class="playlist-grid-header">
       <span class="col-num">#</span>
       <span class="col-title">Title</span>
+      <span class="col-bpm">BPM</span>
       <span class="col-time">🕒</span>
     </div>
     <hr class="playlist-divider" />
@@ -359,7 +367,7 @@ function addSong(songID) {
   for (let song of suggestionSongsArr) {
     if (songID === song.id) {
       if (myPlaylist.includes(song)) {
-        alert("This song already exists!");
+        alert("This song is already in the playlist!");
         return;
       }
       myPlaylist.push(song);
@@ -398,6 +406,7 @@ function updateViewablePlaylist() {
     <div class="playlist-grid-header">
       <span class="col-num">#</span>
       <span class="col-title">Title</span>
+      <span class="col-bpm">BPM</span>
       <span class="col-time">🕒</span>
     </div>
     <hr class="playlist-divider" />
@@ -429,9 +438,9 @@ function updateViewablePlaylist() {
           <h3 class="song-title">${song.title}</h3>
           <p class="song-author">Artist: ${song.author} • ${songGenreConcant}</p>
         </div>
+          <button class="delete-btn" onclick="deleteSong(${song.id})">-</button>
           <div class="song-duration">${song.bpm} BPM</div>
           <span class="song-duration">${songMin}:${songSecString}</span>
-        <button class="delete-btn" onclick="deleteSong(${song.id})">-</button>
       </div>
     `;
     console.log(song);
