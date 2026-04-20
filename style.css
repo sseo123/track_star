@@ -473,19 +473,6 @@ body {
   transform: translateY(-2px);
 }
 
-/* .card-album-art {
-  width: 80px;
-  height: 80px;
-  background: linear-gradient(135deg, var(--primary-green), #7c3aed);
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 2rem;
-  flex-shrink: 0;
-} */
-
 .card-info {
   margin-bottom: 10px;
 }
@@ -654,7 +641,7 @@ body {
 
 .playlist-grid-header {
   display: grid;
-  grid-template-columns: 80px 1fr 45px 60px;
+  grid-template-columns: 80px 1fr 45px 80px;
   align-items: center;
   width: 100%;
   color: #6a6a6a;
@@ -671,7 +658,7 @@ body {
 
 .col-time {
   text-align: right;
-  padding-right: 21px;
+  padding-right: 50px;
 }
 
 .song-row {
@@ -720,7 +707,7 @@ body {
 }
 
 .song-duration {
-  color: #aaa;
+  color: #000000;
 }
 
 .delete-btn {
