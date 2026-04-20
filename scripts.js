@@ -34,7 +34,7 @@ const musicDB = [
 { id: 8, title: "When Christmas Comes Again", author: "grentperez", bpm: 135, genre:["pop"], time: 197, albumCover:"https://cdn-images.dzcdn.net/images/cover/1a3bfb953afa06843769213568280c63/0x1900-000000-80-0-0.jpg" },
 { id: 9, title: "Nonsense", author: "Sabrina Carpenter", bpm: 139, genre: ["pop"], time: 174, albumCover:"https://cdn-images.dzcdn.net/images/cover/ae372ba023cac79e74c1e3e8b6f7a50b/1900x1900-000000-80-0-0.jpg"},
 { id: 10, title: "Nothing", author: "Bruno Major", bpm: 140, genre: ["pop"], time: 163, albumCover:"https://i.scdn.co/image/ab67616d0000b273e321a69d7454d9365c667187"},
-{ id: 11, title: "Samba de Verao", author: "Lisa Ono", bpm: 141, genre: ["jazz", "no lyrics"], time: 315, albumCover:"https://i.scdn.co/image/ab67616d0000b2730e3dda14110f3237ccbfe349" },
+{ id: 11, title: "Samba de Verao", author: "Lisa Ono", bpm: 141, genre: ["no lyrics"], time: 315, albumCover:"https://i.scdn.co/image/ab67616d0000b2730e3dda14110f3237ccbfe349" },
 { id: 12, title: "Annie (clean)", author: "Wave To Earth", bpm: 148, genre: ["pop"], time: 315, albumCover:"https://i.scdn.co/image/ab67616d00001e025082d980a6ca101771609794" },
 { id: 13, title: "drivers license", author: "Olivia Rodrigo", bpm: 144, genre: ["pop"], time: 242, albumCover:"https://i.scdn.co/image/ab67616d0000b273a91c10fe9472d9bd89802e5a"},
 { id: 14, title: "Bound 2", author: "Kanye West", bpm: 149, genre: ["pop"], time: 229, albumCover:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTxvrsYYtaoeap6Pw4TIsFvLd5_WrgIXVRacw&s" },
@@ -62,7 +62,7 @@ const musicDB = [
 { id: 36, title: "Dive", author: "Olivia Dean", bpm: 180, genre: ["pop"], time: 201, albumCover:"https://i.scdn.co/image/ab67616d00001e02cac9b52107643faf13a7587b" },
 { id: 37, title: "Gran Vals", author: "Francisco Tarrega", bpm: 185, genre: ["no lyrics"], time: 210, albumCover:"https://i.discogs.com/1QlH1zDa0Ywtm5bj5nXk5cPih7liTbUDNJRe28bzJpY/rs:fit/g:sm/q:40/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5ODA5/MTg2LTE3MDgwMDc4/NTQtNTc1Ni5qcGVn.jpeg" },
 { id: 38, title: "Sunflower", author: "Post Malone", bpm: 180, genre: ["pop"], time: 158, albumCover:"https://i.scdn.co/image/ab67616d0000b273e2e352d89826aef6dbd5ff8f"},
-{ id: 39, title: "Stayed On Him", author: "Terrian", bpm: 180, genre: ["christian"], time: 239, albumCover:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPFEZdSloutIZeHz3vqZvdpoOeq1zQpeVDLw&s"},
+{ id: 39, title: "Stayed On Him", author: "Terrian", bpm: 180, genre: ["christian", "pop"], time: 239, albumCover:"https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPFEZdSloutIZeHz3vqZvdpoOeq1zQpeVDLw&s"},
 { id: 40, title: "Animals", author: "Maroon 5", bpm: 190, genre: ["pop"], time: 231, albumCover:"https://i.scdn.co/image/ab67616d0000b273780d065ddd0444fc736b4f16"},
 ];
 

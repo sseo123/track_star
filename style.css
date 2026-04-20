@@ -442,6 +442,8 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 15px;
+  max-height: 600px;
+  overflow-y: auto;  
 }
 
 .suggestion-card {
@@ -562,6 +564,8 @@ body {
   justify-content: flex-start;
   align-items: stretch;
   flex: 1;
+  max-height: 600px;
+  overflow-y: auto; 
 }
 
 .playlist-summary-grid {
