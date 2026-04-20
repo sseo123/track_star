@@ -1,7 +1,7 @@
 :root {
   --main-athletic-font: "Barlow Condensed", sans-serif;
   --accent-font: "Montserrat", sans-serif;
-  --primary-green: #40b71e;
+  --primary-green: #3e7a0c;
   --text-primary: #ffffff;
   --text-secondary: #b3b3b3;
   --error-red: #cd2714;
@@ -13,7 +13,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--accent-font);
-  background-color: #f9f9f9;
+  background-color: #d6d3d3;
 }
 
 .main-header {
