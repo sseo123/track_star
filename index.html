@@ -11,19 +11,33 @@
   </head>
 
   <body>
+    <div class="run-scene" aria-hidden="true">
+      <div class="run-sky"></div>
+      <div class="run-layer run-trees run-trees--far"></div>
+      <div class="run-layer run-trees run-trees--near"></div>
+      <div class="run-ground"></div>
+    </div>
+
+    <div class="site-content">
     <header class="main-header">
-      <h1 class="title">Track Star</h1>
+      <div class="title-cloud">
+        <span class="title-cloud__bulge title-cloud__bulge--left" aria-hidden="true"></span>
+        <span class="title-cloud__bulge title-cloud__bulge--mid" aria-hidden="true"></span>
+        <span class="title-cloud__bulge title-cloud__bulge--right" aria-hidden="true"></span>
+        <h1 class="title">Track Star</h1>
+      </div>
     </header>
+    
 
     <div class="pace-selector">
       <div class="pace-converter-card">
         <div class="converter-header">
-          <span class="converter-icon">🏃‍♀️♪🏃</span>
-          <h2 class="converter-title">Pace to BPM Converter</h2>
+          <span class="converter-icon">🏃</span>
+          <h2 class="converter-title">Figure out which songs you should listen to...</h2>
         </div>
 
         <p class="converter-subtitle">
-          Enter the pace you want to run per mile to find songs that match your cadence (between 6 and 12 minutes)
+          Enter the pace you want to run per mile to find songs that match your cadence <b>(between 6 and 12 minutes)</b>
         </p>
 
         <div class="converter-content">
@@ -32,7 +46,7 @@
             <input
               type="text"
               id="pace-min"
-              placeholder="00"
+              placeholder="0"
               inputmode="numeric"
               pattern="[0-9]*"
               min="5"
@@ -80,15 +94,14 @@
       <div class="info-card">
         <h3>Why Run to a Beat?</h3>
         <p>
-          Running with music at a specific BPM helps your body naturally sync
-          your steps to the beat, making your pace more consistent and
-          efficient.
+          Because who doesn't love running to music. But seriously, running with music at a specific BPM helps your body naturally sync
+          your steps to the beat, allowing your pace to be more consistent. 
         </p>
 
         <h3>How to run at the tempo:</h3>
         <p>
-          Pick a song with your target BPM, then match each step (or every other
-          step) to the beat—left foot, right foot, in time with the music.
+          Pick a song with or near your target BPM, then match each step to the beat as you run! 
+          I've carefully selected my favorite running songs, amazing right?
         </p>
       </div>
     </div>
@@ -111,25 +124,15 @@
       </div>
 
       <div class="playlist-section">
-        <div class="playlist-header-box">
-          <span class="playlist-icon">♫</span>
-          <h2 class="playlist-title">My Playlist</h2>
-        </div>
-        <div id="playlist-container" class="playlist-container">
-          <div class="playlist-grid-header">
-            <span class="col-num">#</span>
-            <span class="col-title">Title</span>
-            <span class="col-bpm">BPM</span>
-            <span class="col-time">🕒</span>
+        <div class="playlist-card">
+          <div class="playlist-header-box">
+            <span class="playlist-icon">♫</span>
+            <h2 class="playlist-title">My Playlist</h2>
           </div>
-   
-          <hr class="playlist-divider" />
-
-          <div>currently no songs are selected</div>
-          <div id="playlist-items-list" style="width: 100%"></div>
-          <div id="empty-playlist-state" class="empty-playlist-state"></div>
+          <div id="playlist-container" class="playlist-container"></div>
         </div>
       </div>
+    </div>
     </div>
   </body>
 </html>

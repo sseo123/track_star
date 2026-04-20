@@ -22,64 +22,49 @@
  *    with the string you added to the array, but a broken image.
  */
 
+
 //using https://songbpm.com/ to find song BPM
-
 const musicDB = [
-  // bpm 130 - 135 (6/5)
-  { id: 1, title: "Crazy", author: "LE SSERAFIM", bpm: 130, genre: ["pop"], time: 165 },
-  { id: 2, title: "En arvil a Paris", author: "Artun Miskciyan", bpm: 132, genre: ["no lyrics"], time: 206 },
-  { id: 3, title: "Somewhere in Brooklyn", author: "Bruno Mars", bpm: 130, genre: ["pop"], time: 182 },
-  { id: 4, title: "Die For You", author: "The Weeknd", bpm: 134, genre: ["pop"], time: 260 },
-  { id: 5, title: "That's What I Like", author: "Bruno Mars", bpm: 134, genre: ["pop"], time: 207 },
-  { id: 6, title: "I Thank God", author: "Maverick City Music", bpm: 130, genre: ["christian"], time: 466 },
-
-  // bpm 135 - 140 (3/5)
-  { id: 7, title: "Beat It", author: "Michael Jackson", bpm: 139, genre: ["pop"], time: 258 },
-  { id: 8, title: "Off The Grid", author: "Kanye West", bpm: 138, genre:["pop"], time: 339 },
-  { id: 9, title: "Nonsense", author: "Sabrina Carpenter", bpm: 139, genre: ["pop"], time: 174 },
-
-  // bpm 140 - 145 (3/5)
-  { id: 10, title: "Samba de Verao", author: "Lisa Ono", bpm: 141, genre: ["jazz", "no lyrics"], time: 315 },
-  { id: 11, title: "Annie (clean)", author: "Wave To Earth", bpm: 148, genre: ["pop"], time: 315 },
-  { id: 12, title: "drivers license", author: "Olivia Rodgrigo", bpm: 144, genre: ["pop"], time: 242 },
-
-  // bpm 145 - 150 (1/5)
-  { id: 13, title: "Bound 2", author: "Kanye West", bpm: 149, genre: ["pop"], time: 229 },
-
-  // bpm 150 - 155 (1/5)
-  { id: 14, title: "No Longer Bound", author: "Forrest Frank", bpm: 154, genre: ["christian", "pop"], time: 180 },
-
-  // bpm 155 - 160 (2/5)
-  { id: 15, title: "Shake It Off", author: "Taylor Swift", bpm: 160, genre: ["pop"], time: 219 },
-  { id: 16, title: "Happy", author: "Day6", bpm: 160, genre: ["pop"], time: 190 },
-
-  // bpm 160 - 165 (1/5)
-  { id: 17, title: "Happy", author: "Pharrell Williams", bpm: 160, genre: ["pop"], time: 233 },
-
-  // bpm 165 - 170 (3/5)
-  { id: 18, title: "Good 4 You ", author: "Olivia Rodgigo", bpm: 167, genre: ["pop"], time: 178 },
-  { id: 19, title: "Good Life", author: "Kanye West", bpm: 166, genre: ["pop"], time: 207 },
-  { id: 20, title: "God is Good", author: "Forrest Frank", bpm: 170, genre: ["pop", "christian"], time: 208 },
-
-  // bpm 170 - 175 (1/5)
-  { id: 21, title: "Bliding Lights", author: "The Weeknd", bpm: 171, genre: ["pop"], time: 200},
-
-  // bpm 175 - 180 (3/5)
-  { id: 22, title: "Sunday Morning", author: "Maroon 5", bpm: 176, genre: ["pop"], time: 245},
-  { id: 23, title: "Follow God", author: "Kanye West", bpm: 180, genre: ["pop"], time: 105 },
-  { id: 24, title: "Dive", author: "Olivia Dean", bpm: 180, genre: ["pop"], time: 201 },
-
-  // bpm 180 - 185 (3/5)
-  { id: 25, title: "Gran Vals", author: "Francisco Tarrega", bpm: 185, genre: ["no lyrics"], time: 210 },
-  { id: 26, title: "Sunflower", author: "Post Malone", bpm: 180, genre: ["pop"], time: 158 },
-  { id: 27, title: "Stayed On Him", author: "Terrian", bpm: 180, genre: ["christian"], time: 239 },
-
-  // bpm 185 - 190 (0/5)
-
-  // bpm 190 - 195 (2/5)
-  { id: 28, title: "Animals", author: "Maroon 5", bpm: 190, genre: ["pop"], time: 231 },
-  { id: 29, title: "This Love", author: "Maroon 5", bpm: 190, genre: ["pop"], time: 206 },
-
+{ id: 1, title: "Crazy", author: "LE SSERAFIM", bpm: 130, genre: ["pop"], time: 165, albumCover:"https://upload.wikimedia.org/wikipedia/en/3/35/Crazy_%28Le_Sserafim_album%29.png" },
+{ id: 2, title: "En arvil a Paris", author: "Artun Miskciyan", bpm: 132, genre: ["no lyrics"], time: 206 },
+{ id: 3, title: "Somewhere in Brooklyn", author: "Bruno Mars", bpm: 130, genre: ["pop"], time: 182 },
+{ id: 4, title: "Die For You", author: "The Weeknd", bpm: 134, genre: ["pop"], time: 260 },
+{ id: 5, title: "That's What I Like", author: "Bruno Mars", bpm: 134, genre: ["pop"], time: 207 },
+{ id: 6, title: "I Thank God", author: "Maverick City Music", bpm: 130, genre: ["christian"], time: 466 },
+{ id: 7, title: "Beat It", author: "Michael Jackson", bpm: 139, genre: ["pop"], time: 258 },
+{ id: 8, title: "Off The Grid", author: "Kanye West", bpm: 138, genre:["pop"], time: 339 },
+{ id: 9, title: "Nonsense", author: "Sabrina Carpenter", bpm: 139, genre: ["pop"], time: 174 },
+{ id: 10, title: "Nothing", author: "Bruno Major", bpm: 140, genre: ["pop"], time: 163 },
+{ id: 11, title: "Samba de Verao", author: "Lisa Ono", bpm: 141, genre: ["jazz", "no lyrics"], time: 315 },
+{ id: 12, title: "Annie (clean)", author: "Wave To Earth", bpm: 148, genre: ["pop"], time: 315 },
+{ id: 13, title: "drivers license", author: "Olivia Rodrigo", bpm: 144, genre: ["pop"], time: 242 },
+{ id: 14, title: "Bound 2", author: "Kanye West", bpm: 149, genre: ["pop"], time: 229 },
+{ id: 15, title: "Gold", author: "wave to earth", bpm: 146, genre: ["pop"], time: 280 },
+{ id: 16, title: "Sleep Well", author: "d4vd", bpm: 148, genre: ["pop"], time: 176 },
+{ id: 17, title: "Dolce Nonna", author: "Wayne Jones", bpm: 148, genre: ["no lyrics"], time: 229 },
+{ id: 18, title: "No Longer Bound", author: "Forrest Frank", bpm: 154, genre: ["christian", "pop"], time: 180 },
+{ id: 19, title: "Heart To Heart", author: "Mac DeMarco", bpm: 150, genre: ["pop"], time: 211 },
+{ id: 20, title: "Shake It Off", author: "Taylor Swift", bpm: 160, genre: ["pop"], time: 219 },
+{ id: 21, title: "Happy", author: "Day6", bpm: 160, genre: ["pop"], time: 190 },
+{ id: 22, title: "Mistletoe", author: "Justin Bieber", bpm: 162, genre: ["pop"], time: 183 },
+{ id: 23, title: "Happy", author: "Pharrell Williams", bpm: 160, genre: ["pop"], time: 233 },
+{ id: 24, title: "Tip Toe", author: "HYBS", bpm: 164, genre: ["pop"], time: 225 },
+{ id: 25, title: "So This Is Love", author: "Emile Pandolfi", bpm: 164, genre: ["no lyrics"], time: 172 },
+{ id: 26, title: "How Many Kings", author: "Downhere", bpm: 162, genre: ["christian"], time: 259 },
+{ id: 27, title: "Good 4 You ", author: "Olivia Rodrigo", bpm: 167, genre: ["pop"], time: 178 },
+{ id: 28, title: "Falling Behind", author: "Laufey", bpm: 166, genre: ["pop"], time: 174 },
+{ id: 29, title: "God is Good", author: "Forrest Frank", bpm: 170, genre: ["pop", "christian"], time: 208 },
+{ id: 30, title: "Cold December Night", author: "Michael Buble", bpm: 167, genre: ["pop"], time: 201 },
+{ id: 31, title: "Blinding Lights", author: "The Weeknd", bpm: 171, genre: ["pop"], time: 200 },
+{ id: 32, title: "Up", author: "Tauren Wells", bpm: 172, genre: ["christian", "pop"], time: 177 },
+{ id: 33, title: "Sunday Morning", author: "Maroon 5", bpm: 176, genre: ["pop"], time: 245 },
+{ id: 34, title: "If I knew", author: "Bruno Mars", bpm: 176, genre: ["pop"], time: 133 },
+{ id: 35, title: "Follow God", author: "Kanye West", bpm: 180, genre: ["pop"], time: 105 },
+{ id: 36, title: "Dive", author: "Olivia Dean", bpm: 180, genre: ["pop"], time: 201 },
+{ id: 37, title: "Gran Vals", author: "Francisco Tarrega", bpm: 185, genre: ["no lyrics"], time: 210 },
+{ id: 38, title: "Sunflower", author: "Post Malone", bpm: 180, genre: ["pop"], time: 158 },
+{ id: 39, title: "Stayed On Him", author: "Terrian", bpm: 180, genre: ["christian"], time: 239 },
+{ id: 40, title: "Animals", author: "Maroon 5", bpm: 190, genre: ["pop"], time: 231 },
 ];
 
 
@@ -92,6 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("pace-sec").addEventListener("input", updateBPM);
   document.getElementById("search-input").addEventListener("input", handleSearch); 
   initalDisplayOfSongs();
+  updateViewablePlaylist();
 });
 
 function initalDisplayOfSongs() {
@@ -118,7 +104,6 @@ function initalDisplayOfSongs() {
   }
 }
 
-
 function displaySongs(song, container) {
     let songSec = song.time % 60;
     let songMin = Math.floor(song.time / 60)
@@ -133,7 +118,9 @@ function displaySongs(song, container) {
 
     container.innerHTML += `
       <div class="suggestion-card">
-      <div class="card-album-art">♪</div>
+      <div class="card-album-art">
+        <img src="${song.albumCover}" alt="${song.title} album cover" class="album-art-image"/>
+      </div>
         <div class="card-top">
           <div class="card-info">
             <h4 class="card-title">${song.title}</h4>
@@ -145,16 +132,27 @@ function displaySongs(song, container) {
           </div>
         </div>
         <button class="add-btn" onclick="addSong(${song.id})">+</button>
-      </div> `;
+      </div>
+   `;
 }
 
 
-//-------------------------------
-//-------------------------------
-//everything to do with the bpm
-//-------------------------------
-//-------------------------------
+    // <div class="suggestion-card">
+    //   <div class="card-album-art">♪</div>
+    //     <div class="card-top">
+    //       <div class="card-info">
+    //         <h4 class="card-title">${song.title}</h4>
+    //         <p class="card-author">${song.author} • ${songGenreConcant}</p>
+    //       </div>
+    //       <div class="card-stats">
+    //         <span class="card-bpm">${song.bpm || "unassigned"} BPM</span>
+    //         <span class="card-time">Song Duration: ${songMin}:${songSecString}</span>
+    //       </div>
+    //     </div>
+    //     <button class="add-btn" onclick="addSong(${song.id})">+</button>
+    //   </div>
 
+//everything to do with the bpm
 function calculateBPM() {
   const minTime = document.getElementById("pace-min");
   const secTime = document.getElementById("pace-sec");
@@ -223,11 +221,7 @@ function updateBPM() {
 }
 
 
-//-------------------------------
-//-------------------------------
 //everything to do with search
-//-------------------------------
-//-------------------------------
 function makeLowercase(text) {
   let res;
   res = text.toLowerCase();
@@ -272,14 +266,8 @@ function handleSearch() {
 }
 
 
-//-------------------------------
-//-------------------------------
-//if user decided to use filter
-//1. BPM Filter
-//2. Genre Filter
-//-------------------------------
-//-------------------------------
 
+//if user decided to use BPM filer
 function findBPMMatchingSongs() {
   let tempArr = [];
 
@@ -332,31 +320,23 @@ function clearBPMFilter() {
   initalDisplayOfSongs();
 }
 
-//-------------------------------
-//-------------------------------
+
 //everything to do with the displaying the playlist
-//-------------------------------
-//-------------------------------
-
-
 function playlistEmptyState() {
   let container = document.getElementById("playlist-container");
-  container.innerHTML = "";
-
   container.innerHTML = `
-    <div class="playlist-grid-header">
-      <span class="col-num">#</span>
-      <span class="col-title">Title</span>
-      <span class="col-bpm">BPM</span>
-      <span class="col-time">🕒</span>
-    </div>
-    <hr class="playlist-divider" />
-
-    <div>
-      currently no songs are selected
+    <div class="playlist-empty" role="status" aria-live="polite">
+      <div class="playlist-empty__icon-wrap" aria-hidden="true">
+        <span class="playlist-empty__icon">♫</span>
+      </div>
+      <p class="playlist-empty__title">Your playlist is empty</p>
+      <p class="playlist-empty__hint">
+        Add songs from the list on the left. Click the
+        <span class="playlist-empty__plus-demo" aria-hidden="true">+</span>
+        button on the song you want to add.
+      </p>
     </div>
   `;
-  
 }
 
 function rerenderSongCards() {
@@ -405,7 +385,11 @@ function deleteSong(songID) {
 
 function updateViewablePlaylist() {
   let container = document.getElementById("playlist-container");
-  container.innerHTML = "";
+
+  if (myPlaylist.length < 1) {
+    playlistEmptyState();
+    return;
+  }
 
   container.innerHTML = `
     <div class="playlist-grid-header">
@@ -414,13 +398,7 @@ function updateViewablePlaylist() {
       <span class="col-bpm">BPM</span>
       <span class="col-time">🕒</span>
     </div>
-    <hr class="playlist-divider" />
   `;
-
-  if (myPlaylist.length < 1) {
-    playlistEmptyState();
-    return;
-  }
 
   count = 1;
   for (let song of myPlaylist) {
