@@ -572,7 +572,43 @@ body {
   flex: 1;
 }
 
-/* Empty playlist — calm, scannable, action-oriented */
+.playlist-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.playlist-stat-card {
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 5px;
+}
+
+.playlist-stat-card__label {
+  color: var(--primary-green);
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  font-family: var(--accent-font);
+}
+
+.playlist-stat-card__value {
+  color: var(--primary-green);
+  font-size: 1.5rem;
+  font-family: var(--accent-font);
+  font-weight: 600;
+  line-height: 1;
+}
+
 .playlist-empty {
   flex: 1;
   display: flex;
@@ -644,7 +680,7 @@ body {
   grid-template-columns: 80px 1fr 45px 80px;
   align-items: center;
   width: 100%;
-  color: #6a6a6a;
+  color: var(--primary-green);
   font-size: 0.9rem;
   padding: 10px 0 12px;
   margin-bottom: 12px;
@@ -811,16 +847,25 @@ body {
     width: 100%;
   }
 
-  /* .card-album-art {
-    width: 100%;
-    height: 200px;
-  } */
-
   .add-btn {
     align-self: flex-end;
   }
-}
 
+  .playlist-stat-card {
+    padding: 9px 8px;
+    border-radius: 9px;
+    gap: 4px;
+  }
+
+  .playlist-stat-card__label {
+    font-size: 0.62rem;
+    letter-spacing: 0.04em;
+  }
+
+  .playlist-stat-card__value {
+    font-size: 1.2rem;
+  }
+}
 
 
 .card-album-art {

@@ -355,7 +355,37 @@ function updateViewablePlaylist() {
     return;
   }
 
+  let totalBPM = 0;
+  let totalTime = 0;
+  for (let song of myPlaylist) {
+    totalBPM += song.bpm;
+    totalTime += song.time;
+  }
+  let averageBPM = Math.floor(totalBPM / myPlaylist.length);
+  let totalMin = Math.floor(totalTime / 60);
+  let totalSec = totalTime % 60;
+  let totalSecString = totalSec.toString();
+
+  if (totalSecString.length < 2) {
+    totalSecString = "0" + totalSecString;
+  }
+
+
   container.innerHTML = `
+    <div class="playlist-summary-grid">
+      <div class="playlist-stat-card">
+        <span class="playlist-stat-card__label">Songs</span>
+        <span class="playlist-stat-card__value">${myPlaylist.length}</span>
+      </div>
+      <div class="playlist-stat-card">
+        <span class="playlist-stat-card__label">Duration</span>
+        <span class="playlist-stat-card__value">${totalMin}:${totalSecString}</span>
+      </div>
+      <div class="playlist-stat-card">
+        <span class="playlist-stat-card__label">Avg BPM</span>
+        <span class="playlist-stat-card__value">${averageBPM}</span>
+      </div>
+    </div>
     <div class="playlist-grid-header">
       <span class="col-num">#</span>
       <span class="col-title">Title</span>
@@ -364,7 +394,7 @@ function updateViewablePlaylist() {
     </div>
   `;
 
-  count = 1;
+  let count = 1;
   for (let song of myPlaylist) {
     let songMin = Math.floor(song.time / 60);
     let songSec = song.time % 60;
@@ -379,10 +409,10 @@ function updateViewablePlaylist() {
 
     container.innerHTML += `
       <div class="song-row">
-        <div class="song-index">${count}</div>
+        <div class="song-index">${count}.</div>
         <div class="song-info">
           <h3 class="song-title">${song.title}</h3>
-          <p class="song-author">Artist: ${song.author} • ${songGenreConcant}</p>
+          <p class="song-author">${song.author} • ${songGenreConcant}</p>
         </div>
           <button class="delete-btn" onclick="deleteSong(${song.id})">-</button>
           <div class="song-duration">${song.bpm} BPM</div>
