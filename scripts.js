@@ -309,6 +309,8 @@ function rerenderSongCards() {
   for (let song of suggestionSongsArr) {
     displaySongs(song, container);
   }
+
+  handleSearch();
 }
 
 function addSong(songID) {
