@@ -191,45 +191,6 @@ function updateBPM() {
   console.log(setBPM);
 }
 
-//everything to do with search
-function makeLowercase(text) {
-  let res;
-  res = text.toLowerCase();
-  return res;
-}
-
-function searchForMatch(songTitle, songAuthor, searchInput) {
-  const songTitleLower = makeLowercase(songTitle);
-  const songAuthorLower = makeLowercase(songAuthor);
-  const searchInputLower = makeLowercase(searchInput);
-
-  let isSongCorrect = false;
-  if (songTitleLower.includes(searchInputLower)) { isSongCorrect = true; }
-
-  let isAuthorCorrect = false;
-  if (songAuthorLower.includes(searchInputLower)) { isAuthorCorrect = true; }
-
-  return isSongCorrect || isAuthorCorrect;
-}
-
-function handleSearch() {
-  let searchInput = document.getElementById("search-input");
-  let userSearch = searchInput.value;
-
-  let container = document.getElementById("valid-card-container");
-  let cards = container.getElementsByClassName("suggestion-card");
-
-  for (let i = 0; i < suggestionSongsArr.length; i++) {
-    let song = suggestionSongsArr[i];
-    let card = cards[i];
-
-    if (searchForMatch(song.title, song.author, userSearch)) {
-      card.style.display = "";
-    } else {
-      card.style.display = "none";
-    }
-  }
-}
 
 //if user decided to use BPM filer
 function findBPMMatchingSongs() {
@@ -283,6 +244,47 @@ function clearBPMFilter() {
 
   initialDisplayOfSongs();
 }
+
+//everything to do with search
+function makeLowercase(text) {
+  let res;
+  res = text.toLowerCase();
+  return res;
+}
+
+function searchForMatch(songTitle, songAuthor, searchInput) {
+  const songTitleLower = makeLowercase(songTitle);
+  const songAuthorLower = makeLowercase(songAuthor);
+  const searchInputLower = makeLowercase(searchInput);
+
+  let isSongCorrect = false;
+  if (songTitleLower.includes(searchInputLower)) { isSongCorrect = true; }
+
+  let isAuthorCorrect = false;
+  if (songAuthorLower.includes(searchInputLower)) { isAuthorCorrect = true; }
+
+  return isSongCorrect || isAuthorCorrect;
+}
+
+function handleSearch() {
+  let searchInput = document.getElementById("search-input");
+  let userSearch = searchInput.value;
+
+  let container = document.getElementById("valid-card-container");
+  let cards = container.getElementsByClassName("suggestion-card");
+
+  for (let i = 0; i < suggestionSongsArr.length; i++) {
+    let song = suggestionSongsArr[i];
+    let card = cards[i];
+
+    if (searchForMatch(song.title, song.author, userSearch)) {
+      card.style.display = "";
+    } else {
+      card.style.display = "none";
+    }
+  }
+}
+
 
 //everything to do with the displaying the playlist
 function playlistEmptyState() {
