@@ -74,6 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("pace-min").addEventListener("input", updateBPM);
   document.getElementById("pace-sec").addEventListener("input", updateBPM);
   document.getElementById("search-input").addEventListener("input", handleSearch);
+  document.getElementById("reverse-input").addEventListener("input", handleReverseSearch); //added event listener and changed DOM to reverse-input
   initialDisplayOfSongs();
   updateViewablePlaylist();
 });
@@ -266,6 +267,21 @@ function searchForMatch(songTitle, songAuthor, searchInput) {
   return isSongCorrect || isAuthorCorrect;
 }
 
+function reverseSearch(songTitle, songAuthor, searchInput) {
+  const songTitleLower = makeLowercase(songTitle);
+  const songAuthorLower = makeLowercase(songAuthor);
+  const searchInputLower = makeLowercase(searchInput);
+
+  let isSongCorrect = true; //swapped true and false statements
+  if (songTitleLower.includes(searchInputLower)) { isSongCorrect = false; }
+
+  let isAuthorCorrect = true;
+  if (songAuthorLower.includes(searchInputLower)) { isAuthorCorrect = false; }
+
+  return isSongCorrect || isAuthorCorrect;
+}
+
+
 function handleSearch() {
   let searchInput = document.getElementById("search-input");
   let userSearch = searchInput.value;
@@ -285,6 +301,25 @@ function handleSearch() {
   }
 }
 
+function handleReverseSearch() {
+  let searchInput = document.getElementById("reverse-input"); //updated dom element to reverse-input
+  let userSearch = searchInput.value;
+
+  let container = document.getElementById("valid-card-container");
+  let cards = container.getElementsByClassName("suggestion-card");
+
+  for (let i = 0; i < suggestionSongsArr.length; i++) {
+    let song = suggestionSongsArr[i];
+    let card = cards[i];
+
+    //if song or author matches input, show the database, but not the
+    if (searchForMatch(song.title, song.author, userSearch) && userSearch !== "") {
+      card.style.display = "none"; //swapped displays
+    } else {
+      card.style.display =  "";
+    }
+  }
+}
 
 //everything to do with the displaying the playlist
 function playlistEmptyState() {
@@ -313,6 +348,8 @@ function rerenderSongCards() {
   }
 
   handleSearch();
+
+  handleReverseSearch();
 }
 
 function addSong(songID) {
