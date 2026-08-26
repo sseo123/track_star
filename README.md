@@ -1,146 +1,85 @@
-Shawn Seo's Project Link:
-https://sseo123.github.io/track_star/
+# 🏃 Track Star
 
+**Find your perfect running playlist — matched to your pace.**
 
+Track Star is a catalog app that converts your target running pace into a matching beats-per-minute (BPM) range, then filters a curated song library so you can build a playlist that keeps your cadence consistent, mile after mile.
 
-
-# SEA Stage 2 - Data Catalog Project
-
-This repository contains the instructions, requirements, and starter code for Stage Two of the Snap Engineering Academy application process.
-
----
-
-## 📚 Table of Contents
-
-- [Your Task](#your-task)
-- [Requirements](#requirements---your-catalog-website-should)
-- [Getting Started](#getting-started)
-- [Submitting](#submitting)
-- [❓ Frequently Asked Questions (FAQ)](#-frequently-asked-questions-faq)
+🔗 **Live Demo:** [sseo123.github.io/track_star](https://sseo123.github.io/track_star/)
+📦 **Repo:** [github.com/sseo123/track_star](https://github.com/sseo123/track_star)
 
 ---
 
-## 🎯 Your Task
+## 📖 Overview
 
-### <p align="center">Create a "catalog" website for something you're passionate about.</p>
+Runners often try to match their footstrike to the beat of a song to keep a steady cadence — but finding songs at the right tempo is tedious. Track Star solves that by letting you enter a target pace (minutes:seconds per mile) and instantly surfacing songs from a 40-track catalog whose BPM lines up with that pace, using a simple pace-to-BPM conversion formula. From there, you can search, filter, and build a custom playlist, with live stats (song count, total duration, and average BPM) updating as you go.
 
-> 📝 **Note:**  
-> If you have not used GitHub or programmed a website with JavaScript before, that's OK! Part of the challenge is figuring out things you're not familiar with.
-
----
-
-## ✅ Requirements - Your Catalog Website Should...
-
-- Show off your understanding of basic data structures: [**arrays**](https://www.w3schools.com/js/js_arrays.asp) and [**objects**](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Working_with_objects).
-- Display a **substantial amount of interesting data** in a "catalog". You can look online for datasets or create your own. Make sure you import the data yourself and are not fetching an API.
-  - Your data should be easy to find in your source code—either in variables at the top of `scripts.js` or imported from a file.
-- Include **two or more features** that **operate** on your data and modify how the data is displayed. Examples of features that operate on your data are:
-  - Filtering
-  - Searching
-  - Sorting
-  - Updating
-  - Adding/removing entries  
-    Think about what users might want to do while using your site!
-- Look polished ✨. Use **HTML** and **CSS** to make your data easy to read and visually appealing.
-- Be built from this **starter code**—you can change anything you want, but build on top of it.
-- Be an **original** project. Please do not submit something previously created for a class, internship, or client.  
-  You are encouraged to use online resources, but **make sure you understand every line of code** in your project.
+This project was originally built as the Stage 2 Data Catalog Project for Snap Engineering Academy, starting from their provided starter template and built out from there.
 
 ---
 
-## 🛠️ Getting Started
+## ✨ Features
 
-1. [**Create a GitHub account**](https://github.com/) if you haven't already.
-2. Click the blue **"Use as Template"** button in the upper right corner, then choose **"Create a new repository"**:  
-   <img height="300" alt="Screenshot of catalog example" src="./assets/templateArrow.png">
-   Then :
-
-   2a. Choose yourself as the owner (aka your github account)
-   <br>
-   2b. Give your repository a name
-   <br>
-   2c. Click **"Create Repository"**
-
-3. Copy or download the files to your own computer.
-4. Open and edit the code using a text editor or an IDE, a popular IDE is [vsCode](https://code.visualstudio.com/):
-   - Take your time and read the files, read the comments as they are intended to guide you!
-   - Modify `index.html`, `style.css`, and `scripts.js`.
-   - To preview, open `index.html` in a web browser (double-click it).
-   - You should see something like this:
-
-<img  alt="Screenshot of use template button location" src="https://github.com/Snap-Engineering-Academy-2023/rn_lab1/assets/7607483/fdd57236-50fe-48ca-956d-d9b4b12db038">
+- **🎯 Pace → BPM Converter** — Enter a pace between 6:00 and 12:00 min/mile and get the ideal music tempo to match your cadence, with input validation for out-of-range or invalid entries.
+- **🎚️ BPM Filtering** — Instantly filters the 40-song catalog down to tracks within a ±5 BPM window of your target tempo.
+- **🔍 Live Search** — Search the catalog by song title or artist name in real time.
+- **➕➖ Playlist Builder** — Add or remove songs from your personal playlist with a single click; songs move between the catalog and playlist views automatically so nothing is ever listed twice.
+- **📊 Playlist Stats** — See your playlist's total song count, combined duration, and average BPM update live as you build it.
 
 ---
 
-## 🚀 Submitting
+## 🖥️ Tech Stack
 
-1. **Publish your website to the internet!**  
-   We recommend using [GitHub Pages](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site#creating-your-site).
-2. **Test the published version.**  
-   Make sure everything works properly before submitting.
-3. **Update your GitHub repository** so it reflects the latest version of your project.
-4. **Submit** BOTH:
-   - The **URL** to your published website
-   - The **link** to your GitHub repository  
-     …via the Google Form linked in your email.
-5. Complete the video questions via the Hireflix platform
+Built entirely with vanilla web technologies — no frameworks or libraries — to focus on core JavaScript fundamentals:
+
+- **HTML5** — semantic structure and accessibility attributes
+- **CSS3** — custom properties, responsive grid/flex layouts, keyframe animations
+- **JavaScript (ES6+)** — array/object data modeling, DOM manipulation, event handling, and state management
 
 ---
 
-## ❓ Frequently Asked Questions (FAQ)
+## 📁 Project Structure
 
-### ❄️ Is it OK that my catalog resets when I refresh the page?
-
-**Yes!** That's exactly what the starter code does too. You don't need to worry about preserving data after a page refresh.
-
----
-
-### 💻 Can I copy bits of code from online resources?
-
-**Yes, absolutely!** You should search for and use **small chunks** of code.  
-For example:
-
-- ✅ Copying code to create a dropdown menu is fine.
-- ❌ Copying a full “filter data by date” feature is not.
-
-Be thoughtful about what you borrow!
+```
+track_star/
+├── index.html      # Page structure and layout
+├── scripts.js       # App logic: data catalog, BPM math, search, and playlist state
+├── style.css        # Styling, animations, and responsive design
+└── README.md
+```
 
 ---
 
-### 🤖 Can I use generative AI (like ChatGPT or Copilot)?
+## 🚀 Getting Started
 
-**Partially.**
+Since this is a static site with no build step, running it locally is simple:
 
-- ✅ You _may_ use AI tools to help write **HTML** and **CSS**.
-- ❌ You _may not_ use AI to write **JavaScript**.
+1. **Clone the repo**
+   ```bash
+   git clone https://github.com/sseo123/track_star.git
+   cd track_star
+   ```
+2. **Open `index.html`** directly in your browser (double-click it, or use an extension like VS Code's Live Server).
 
-HTML/CSS can be tricky to get right, and it's okay to get help making things look nice.  
-But JavaScript is where you show your own logic and understanding of data!
-
----
-
-### 🧰 Can I use a different template?
-
-**Nope!**  
-You must use the provided starter code, though you're free to customize it however you like.  
-You _can_ copy **small chunks** from other templates if needed.
+No installation, dependencies, or API keys required.
 
 ---
 
-### 🛠️ Can I use a framework like React, Vue, Bootstrap, or Tailwind?
+## 🧠 What I Learned
 
-**Nope!**  
-This project is for folks new to web dev. Frameworks do a lot of heavy lifting and hide the logic we're asking you to demonstrate.  
-SEA will teach you frameworks later—stick to **vanilla HTML, CSS, and JS** for now.
+This project was my first deep dive into vanilla JavaScript state management — keeping the "available songs" list and the "playlist" list in sync without a framework taught me a lot about treating data as a single source of truth rather than manipulating the DOM directly. Building the pace-to-BPM converter meant translating a real running formula into validated, user-proof input handling, and the search/filter features pushed me to think carefully about how UI state should respond to changing data.
 
----
-
-### 🌐 Can I use APIs?
-
-**Nope!**  
-APIs can add complexity beyond the scope of this challenge.  
-If you really want to use data from an API, **save it to a file** (like `.json` or `.csv`) and use that instead.
+Beyond the code itself, this was also my introduction to collaborative software development: forking and cloning a starter repository, building on top of someone else's codebase, and opening/reviewing GitHub issues and pull requests with peers. Reading feedback from others and deciding how to act on it taught me as much about writing clear, maintainable code as the JavaScript itself did.
 
 ---
 
-> 💬 **Have any questions?** Drop them on the [Padlet here](https://padlet.com/arlenschallenge/2026-snap-engineering-academy-stage-2-project-assessment-que-9oux20x1z3g8lyyd) and we'll get back to you!
+## 🙏 Acknowledgments
+
+- Built on top of the [Snap Engineering Academy Stage 2 Data Catalog starter code](https://github.com/Snap-Engineering-Academy-2023).
+- Song BPM data sourced from [songbpm.com](https://songbpm.com/).
+- Album art sourced from public artist/label imagery.
+
+---
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
